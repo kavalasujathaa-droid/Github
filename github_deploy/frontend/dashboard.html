@@ -981,7 +981,7 @@ data.length +
 }
 
 /* ── ACTIONS ── */
-async function depositMoney(){
+ async function depositMoney(){
 
     const amount =
     document.getElementById(
@@ -1008,25 +1008,19 @@ async function depositMoney(){
     await response.json();
 
     showToast(
-    data.message,
-    "success"
-    );
-    if(data.success){
-
-    showReceipt(
-        "Deposit Successful",
-        amount,
-        data.balance || "Updated"
+        data.message,
+        data.success
+        ? "success"
+        : "error"
     );
 
-}
     document.getElementById(
-"depositAmt"
-).value = "";
+        "depositAmt"
+    ).value = "";
 
     loadData();
+} 
 
-}
 async function withdrawMoney(){
 
     const amount =
@@ -1035,7 +1029,7 @@ async function withdrawMoney(){
     ).value;
 
     const response =
-    await fetch(
+    await fetch/deposit(
         `${BASE}/withdraw`,
         {
             method:"POST",
