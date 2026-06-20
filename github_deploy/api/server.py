@@ -44,6 +44,45 @@ def login():
         password = data.get("password")
 
         conn = get_connection()
+        def init_db():
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS users (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        full_name TEXT,
+        username TEXT UNIQUE,
+        password_hash TEXT,
+        pin TEXT
+    )
+    """)
+
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS accounts (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user_id INTEGER,
+        account_number TEXT,
+        account_type TEXT,
+        balance REAL DEFAULT 0
+    )
+    """)
+
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS transactions (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        account_number TEXT,
+        transaction_type TEXT,
+        amount REAL,
+        receiver_account TEXT,
+        timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+    """)
+
+    conn.commit()
+    conn.close()
+
+init_db()
         cursor = conn.cursor()
 
         cursor.execute(
