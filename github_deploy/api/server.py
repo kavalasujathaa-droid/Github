@@ -16,8 +16,7 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
-
-DB_PATH = "app/database/bank.db"
+DB_PATH = "bank.db"
 ADMIN_USER = "admin"
 ADMIN_PASS = "admin123"
 
@@ -25,7 +24,9 @@ def get_connection():
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
     return conn
-    def init_db():
+
+
+def init_db():
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
 
@@ -62,6 +63,7 @@ def get_connection():
 
     conn.commit()
     conn.close()
+
 
 init_db()
 
