@@ -25,26 +25,7 @@ def get_connection():
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
     return conn
-
-@app.route("/")
-def home():
-    return jsonify({
-        "status": "working",
-        "message": "Royal Bank API Running"
-    })
-
-@app.route("/login", methods=["POST"])
-def login():
-
-    try:
-
-        data = request.get_json()
-
-        username = data.get("username")
-        password = data.get("password")
-
-        conn = get_connection()
-        def init_db():
+    def init_db():
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
 
@@ -83,6 +64,26 @@ def login():
     conn.close()
 
 init_db()
+
+@app.route("/")
+def home():
+    return jsonify({
+        "status": "working",
+        "message": "Royal Bank API Running"
+    })
+
+@app.route("/login", methods=["POST"])
+def login():
+
+    try:
+
+        data = request.get_json()
+
+        username = data.get("username")
+        password = data.get("password")
+
+        conn = get_connection()
+
         cursor = conn.cursor()
 
         cursor.execute(
