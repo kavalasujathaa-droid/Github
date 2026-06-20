@@ -4,7 +4,7 @@ from app.services.bank_service import BankService
 import sqlite3
 from app.services.bank_service import BankService
 import csv
-
+from flask_cors import CORS
 
 def dashboard(user):
     while True:
