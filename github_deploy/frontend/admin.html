@@ -627,7 +627,7 @@ async function loadStats(manual){
 
   const t0 = performance.now();
   try{
-    const response = await fetch("http://127.0.0.1:5000/admin/stats");
+    const response = await fetch("https://royal-bank-system.onrender.com/admin/stats");
     const data = await response.json();
     const ms = Math.round(performance.now() - t0);
 
@@ -672,7 +672,7 @@ async function loadUsers(){
 
     const response =
     await fetch(
-        "http://127.0.0.1:5000/admin/users"
+        "https://royal-bank-system.onrender.com/admin/users"
     );
 
     const data =
@@ -725,7 +725,7 @@ async function loadAccounts(){
 
     const response =
     await fetch(
-        "http://127.0.0.1:5000/admin/accounts"
+        "https://royal-bank-system.onrender.com/admin/accounts"
     );
 
     const data =
@@ -767,7 +767,7 @@ async function loadTransactions(){
 
     const response =
     await fetch(
-        "http://127.0.0.1:5000/admin/transactions"
+        "https://royal-bank-system.onrender.com/admin/transactions"
     );
 
     const data =
@@ -882,7 +882,7 @@ async function deleteUser(username){
     }
 
     await fetch(
-        `http://127.0.0.1:5000/admin/delete-user/${username}`,
+        `https://royal-bank-system.onrender.com/admin/delete-user/${username}`,
         {
             method:"DELETE"
         }
